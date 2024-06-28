@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+}
+/* container styles ***********************************************/
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+/* header styles ***********************************************/
+.header {
+    flex: 1;
+}
+/* bookshelf styles ***********************************************/
+.bookshelf {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 325px));
+    grid-auto-rows: minmax(300px , 350px);
+    overflow-y: scroll;
+}
+.book-card {
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    flex: 2;
+}
+.author {
+    flex: 1;
+}
+.page-number {
+    flex: 1;
+}
+.genre {
+    flex: 1;
+}
+.read-status {
+    flex: 1;
+}
+.delete-button {
+    background-image: url(./images/bell-outline.svg);
+    background-repeat: no-repeat;
+    min-height: 50px;
+}
+/* shelf-functionality styles ***********************************************/
+.shelf-functionality {
+    flex: 1;
+}
