@@ -13,6 +13,21 @@
 .header {
     flex: 1;
 }
+.add-book {
+    background-color: violet;
+}
+.close-button {
+    background-image: red;
+}
+.book-form {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 500px;
+}
+.add-form {
+
+}
 /* bookshelf styles ***********************************************/
 .bookshelf {
     flex: 3;
@@ -44,8 +59,4 @@
     background-image: url(./images/bell-outline.svg);
     background-repeat: no-repeat;
     min-height: 50px;
-}
-/* shelf-functionality styles ***********************************************/
-.shelf-functionality {
-    flex: 1;
 }
