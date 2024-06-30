@@ -12,48 +12,66 @@ function Book(title, author, pageNumber, genre, readStatus) {
   this.genre = genre;
   this.readStatus = readStatus;
 }
+//function to destroy old cards and display updated cards
+function rebuildBookShelf(){
+  myLibrary.forEach(book => {
+    const bookCard = document.querySelector('.book-card');
+    if (bookCard != null){
+      bookCard.remove();
+    };  
+  });
+  displayBooks();
+};
+
 // function to add books using the constructor
 function addBookToLibrary(title, author, pageNumber, genre, readStatus) {
   const book = new Book(title, author, pageNumber, genre, readStatus);
   myLibrary.push(book);
 }
 
-// function to display modal dialog
+// deleting book object from array and bookCard
+function deleteBookFromLibrary(index,card) {
+  card.remove();
+  myLibrary.splice(index, 1);
+  console.log("Removed Index: " + index);
+  rebuildBookShelf();
+  
+}
 const dialog = document.querySelector("dialog");
+
 const addBookButton = document.querySelector(".add-book")
   addBookButton.addEventListener("click", () => {
+  // displaying modal dialog
   dialog.showModal();
 });
-
-// function to destroy cards, add book from form data and display new cards
-const addForm = document.querySelector(".add-form");
-addForm.addEventListener("click", () => {
-  // destroying previous cards 
-  myLibrary.forEach(book => {
-    const bookCard = document.querySelector('.book-card');
-    bookCard.remove();
-  });
-  // adding form input to book array
-  addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#genre").value, document.querySelector('input[name="read-status"]:checked').value);
-  // closing dialog and calling displayBooks() with new book cards
-  dialog.close();
-  displayBooks();
-  // resetting form
-  document.querySelector(".book-form").reset();
-});
-
-// closing dialog
+ 
 const closeButton = document.querySelector(".close-button")
 closeButton.addEventListener("click", () => {
-  dialog.close();
+  closingAndResetting();
+});
+function closingAndResetting(){
+  // closing modal dialog
+  dialog.close()
   // resetting form
   document.querySelector(".book-form").reset();
+}
+
+// function to destroy cards, add book from form data and display new cards
+function addFormData() {
+  const addForm = document.querySelector(".add-form");
+  addForm.addEventListener("click", () => {
+  // adding form input to book array
+  addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#genre").value, document.querySelector('input[name="read-status"]:checked').value);
+  closingAndResetting(); 
+  rebuildBookShelf();
+  
 });
+}
 
 function displayBooks(){
   const bookShelf = document.querySelector(".bookshelf");
   //const bookShelf = document.querySelector(".bookshelf");
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book,index) => {
       // creating a card for every book in the array
       const bookCard = document.createElement('div');
       bookCard.classList.add("book-card");
@@ -86,13 +104,25 @@ function displayBooks(){
       bookCard.appendChild(readStatus);
       
       const deleteButton = document.createElement('div');
+      deleteButton.textContent = index;
       deleteButton.classList.add("delete-button");
       bookCard.appendChild(deleteButton);
-
+      deleteButton.addEventListener("click", () => {
+        // calling function to delete object from array and bookCard
+        deleteBookFromLibrary(index,bookCard);
+      });
       // adding each card to the shelf
       bookShelf.append(bookCard);
     });
 }
-addBookToLibrary("Eva is a Goose", "Daniel Gonzalez", "300", "Adventure", "Read");
-addBookToLibrary("Eva is a Goose", "Daniel Gonzalez", "300", "Adventure", "Read");
+
+addBookToLibrary("1Eva is a Goose1", "Daniel Gonzalez", "300", "Adventure", "Read");
+addBookToLibrary("2Eva is a Goose2", "Daniel Gonzalez", "300", "Adventure", "Read");
+addBookToLibrary("3Eva is a Goose3", "Daniel Gonzalez", "300", "Adventure", "Read");
 displayBooks();
+addFormData();
+
+const show = document.querySelector(".show");
+show.addEventListener("click", () => {
+  console.table(myLibrary);
+});

@@ -56,7 +56,7 @@
     flex: 1;
 }
 .delete-button {
-    background-image: url(./images/bell-outline.svg);
-    background-repeat: no-repeat;
+    /* background-image: url(./images/bell-outline.svg); */
+    /* background-repeat: no-repeat; */
     min-height: 50px;
 }
