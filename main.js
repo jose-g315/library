@@ -37,6 +37,20 @@ function deleteBookFromLibrary(index,card) {
   rebuildBookShelf();
   
 }
+// toggling read status of each card
+function updateReadStatus(index){
+  let book = myLibrary[index]
+  if (book.readStatus === "Read") {
+    book.readStatus = "Unread";
+    console.log(book.readStatus);
+    rebuildBookShelf();
+  }
+  else {
+    book.readStatus = "Read";
+    console.log(book.readStatus);
+    rebuildBookShelf()
+  }
+}
 const dialog = document.querySelector("dialog");
 
 const addBookButton = document.querySelector(".add-book")
@@ -102,6 +116,9 @@ function displayBooks(){
       readStatus.textContent = book.readStatus;
       readStatus.classList.add("read-status");
       bookCard.appendChild(readStatus);
+      readStatus.addEventListener("click", () => {
+          updateReadStatus(index,bookCard);
+      });
       
       const deleteButton = document.createElement('div');
       deleteButton.textContent = index;
@@ -111,12 +128,13 @@ function displayBooks(){
         // calling function to delete object from array and bookCard
         deleteBookFromLibrary(index,bookCard);
       });
+
       // adding each card to the shelf
       bookShelf.append(bookCard);
     });
 }
 
-addBookToLibrary("1Eva is a Goose1", "Daniel Gonzalez", "300", "Adventure", "Read");
+addBookToLibrary("1Eva is a Goose1", "Daniel Gonzalez", "300", "Adventure", "Unread");
 addBookToLibrary("2Eva is a Goose2", "Daniel Gonzalez", "300", "Adventure", "Read");
 addBookToLibrary("3Eva is a Goose3", "Daniel Gonzalez", "300", "Adventure", "Read");
 displayBooks();
