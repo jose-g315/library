@@ -9,30 +9,41 @@
 <body>
     <div class="container">
         <div class="header">
-            <p>My Bookshelf</p>
+            <p class="header-title">My Bookshelf</p>
             <dialog>
-                <button autofocus class="close-button">Close</button>
-                <form action="" class="book-form">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title">
-                    <label for="author">Author:</label>
-                    <input type="text" name="author" id="author">
-                    <label for="pages">Pages:</label>
-                    <input type="text" name="pages" id="pages">
-                    <label for="genre">Genre:</label>
-                    <input type="text" name="genre" id="genre"> 
-                    <fieldset>
-                        <legend>Read Status?</legend>
-                        <label for="read">Read</label>
-                        <input type="radio" name="read-status" id="read" value="Read">
-                        <label for="unread">Unread</label>
-                        <input type="radio" name="read-status" id="unread" value="Unread" checked>
-                    </fieldset>
-                    <button type="button" class="add-form">Add</button>
-                </form>
+                <div class="dialog-div">
+                    <button class="close-button">Cancel</button>
+                    <form action="" class="book-form">
+                        <div>
+                            <label for="title">Title:</label>
+                            <input type="text" name="title" id="title" required>
+                        </div>
+                        <div>
+                            <label for="author">Author:</label>
+                            <input type="text" name="author" id="author">
+                        </div>
+                        <div>
+                        <label for="pages">Pages:</label>
+                        <input type="number" name="pages" id="pages">
+                        </div>
+                        <div>
+                            <label for="genre">Genre:</label>
+                            <input type="text" name="genre" id="genre"> 
+                        </div>
+                        <fieldset>
+                            <legend>Read Status?</legend>
+                            <label for="read">Read</label>
+                            <input type="radio" name="read-status" id="read" value="Read">
+                            <label for="unread">Unread</label>
+                            <input type="radio" name="read-status" id="unread" value="Unread" checked>
+                        </fieldset><br>
+                        <button type="button" class="add-form">Add</button>
+                    </form>
+                </div>
             </dialog>
             <button class="add-book">Add Book</button>
-            <button class="show">Show</button>
+            <!-- <button class="show">Show</button> -->
+            <!-- Image by <a href="https://pixabay.com/users/peggy_marco-1553824/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1027559">Peggy und Marco Lachmann-Anke</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1027559">Pixabay</a> -->
         </div>
         <div class="bookshelf"></div>
     </div>

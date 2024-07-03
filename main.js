@@ -87,22 +87,22 @@ function displayBooks(){
   //const bookShelf = document.querySelector(".bookshelf");
     myLibrary.forEach((book,index) => {
       // creating a card for every book in the array
-      const bookCard = document.createElement('div');
+      const bookCard = document.createElement("div");
       bookCard.classList.add("book-card");
 
       /* creating an element and inputting corresponding book 
          value then adding class and appending to the card */
-      const title = document.createElement('p');
+      const title = document.createElement("p");
       title.textContent = book.title;
       title.classList.add("title");
       bookCard.appendChild(title);
 
-      const author = document.createElement('p');
+      const author = document.createElement("p");
       author.textContent = book.author;
       author.classList.add("author");
       bookCard.appendChild(author);
 
-      const pageNumber = document.createElement('p');
+      const pageNumber = document.createElement("p");
       pageNumber.textContent = book.pageNumber;
       pageNumber.classList.add("page-number");
       bookCard.appendChild(pageNumber);
@@ -112,16 +112,20 @@ function displayBooks(){
       genre.classList.add("genre");
       bookCard.appendChild(genre);
 
-      const readStatus = document.createElement('div');
+      const readStatus = document.createElement("button");
       readStatus.textContent = book.readStatus;
       readStatus.classList.add("read-status");
+      if(readStatus.textContent === "Unread") {
+        readStatus.classList.add("unread");
+      }
       bookCard.appendChild(readStatus);
       readStatus.addEventListener("click", () => {
-          updateReadStatus(index,bookCard);
+          updateReadStatus(index);
       });
       
-      const deleteButton = document.createElement('div');
-      deleteButton.textContent = index;
+      
+      const deleteButton = document.createElement("button");
+      //deleteButton.textContent = "Delete";
       deleteButton.classList.add("delete-button");
       bookCard.appendChild(deleteButton);
       deleteButton.addEventListener("click", () => {
@@ -140,7 +144,7 @@ addBookToLibrary("3Eva is a Goose3", "Daniel Gonzalez", "300", "Adventure", "Rea
 displayBooks();
 addFormData();
 
-const show = document.querySelector(".show");
-show.addEventListener("click", () => {
-  console.table(myLibrary);
-});
+// const show = document.querySelector(".show");
+// show.addEventListener("click", () => {
+//   console.table(myLibrary);
+// });
