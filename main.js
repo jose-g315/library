@@ -138,13 +138,9 @@ function displayBooks(){
     });
 }
 
-addBookToLibrary("1Eva is a Goose1", "Daniel Gonzalez", "300", "Adventure", "Unread");
-addBookToLibrary("2Eva is a Goose2", "Daniel Gonzalez", "300", "Adventure", "Read");
-addBookToLibrary("3Eva is a Goose3", "Daniel Gonzalez", "300", "Adventure", "Read");
+addBookToLibrary("Over the Horizon", "Larry Wells", "1205", "Action", "Unread");
+addBookToLibrary("Who I Am", "Tony Rivers", "600", "Mystery", "Read");
+addBookToLibrary("A Knight of the Seven Kingdoms", "Duncan Strong", "850", "Adventure", "Read");
 displayBooks();
 addFormData();
 
-// const show = document.querySelector(".show");
-// show.addEventListener("click", () => {
-//   console.table(myLibrary);
-// });
