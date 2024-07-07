@@ -75,10 +75,18 @@ function addFormData() {
   const addForm = document.querySelector(".add-form");
   addForm.addEventListener("click", () => {
   // adding form input to book array
-  addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#genre").value, document.querySelector('input[name="read-status"]:checked').value);
-  closingAndResetting(); 
-  rebuildBookShelf();
-  
+  const title = document.querySelector("#title");
+  const author = document.querySelector("#author");
+  // data validation
+  if (title.value.length > 0 && author.value.length > 0) {
+    addBookToLibrary(title.value, author.value, document.querySelector("#pages").value, document.querySelector("#genre").value, document.querySelector('input[name="read-status"]:checked').value);
+    closingAndResetting(); 
+    rebuildBookShelf();
+  } else {
+    alert("Please Enter a Title and Author");
+    title.classList.add("invalid");
+    author.classList.add("invalid");
+  }
 });
 }
 

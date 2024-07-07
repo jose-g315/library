@@ -82,6 +82,9 @@ fieldset {
 .add-form:hover {
     box-shadow: 0 0 10px;
 }
+.invalid {
+    border: 3px solid red;
+}
 ::backdrop {
     background-color: whitesmoke;
     opacity: 0.5;
