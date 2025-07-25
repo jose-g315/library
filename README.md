@@ -2,6 +2,9 @@
 Library app from TOP which stores book objects in memory.
 A user is able to add and delete books which are displayed in a responsive grid.
 
+## Purpose
+To practice object creation using a constructor. 
+
 ## Link
 https://jose-g315.github.io/library/
 
