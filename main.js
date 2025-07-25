@@ -1,35 +1,30 @@
 // jose-g315
 // logic and DOM manipulation for library app
 
-// array to hold book objects
 const myLibrary = [];
 
-// book constructor
 function Book(title, author, pageNumber, genre, readStatus) {
+  this.uuid = self.crypto.randomUUID();
   this.title = title;
   this.author = author;
   this.pageNumber = pageNumber;
   this.genre = genre;
   this.readStatus = readStatus;
 }
-//function to destroy old cards and display updated cards
-function rebuildBookShelf(){
-  myLibrary.forEach(book => {
-    const bookCard = document.querySelector('.book-card');
-    if (bookCard != null){
-      bookCard.remove();
-    };  
-  });
-  displayBooks();
-};
-
-// function to add books using the constructor
 function addBookToLibrary(title, author, pageNumber, genre, readStatus) {
   const book = new Book(title, author, pageNumber, genre, readStatus);
   myLibrary.push(book);
 }
-
-// deleting book object from array and bookCard
+function rebuildBookShelf(){
+  const bookCards = document.querySelectorAll('.book-card');
+  for (const bookCard of bookCards) {
+    if (bookCard != null){
+      bookCard.remove();
+    }; 
+  }
+  displayBooks();
+  console.table(myLibrary);
+};
 function deleteBookFromLibrary(index,card) {
   card.remove();
   myLibrary.splice(index, 1);
@@ -37,7 +32,6 @@ function deleteBookFromLibrary(index,card) {
   rebuildBookShelf();
   
 }
-// toggling read status of each card
 function updateReadStatus(index){
   let book = myLibrary[index]
   if (book.readStatus === "Read") {
@@ -74,7 +68,6 @@ function closingAndResetting(){
 function addFormData() {
   const addForm = document.querySelector(".add-form");
   addForm.addEventListener("click", () => {
-  // adding form input to book array
   const title = document.querySelector("#title");
   const author = document.querySelector("#author");
   // data validation
@@ -92,14 +85,11 @@ function addFormData() {
 
 function displayBooks(){
   const bookShelf = document.querySelector(".bookshelf");
-  //const bookShelf = document.querySelector(".bookshelf");
     myLibrary.forEach((book,index) => {
       // creating a card for every book in the array
       const bookCard = document.createElement("div");
       bookCard.classList.add("book-card");
 
-      /* creating an element and inputting corresponding book 
-         value then adding class and appending to the card */
       const title = document.createElement("p");
       title.textContent = book.title;
       title.classList.add("title");
@@ -133,22 +123,21 @@ function displayBooks(){
       
       
       const deleteButton = document.createElement("button");
-      //deleteButton.textContent = "Delete";
       deleteButton.classList.add("delete-button");
       bookCard.appendChild(deleteButton);
       deleteButton.addEventListener("click", () => {
-        // calling function to delete object from array and bookCard
         deleteBookFromLibrary(index,bookCard);
       });
-
-      // adding each card to the shelf
       bookShelf.append(bookCard);
     });
 }
+function initializeApp() {
+  addBookToLibrary("Over the Horizon", "Larry Wells", "1205", "Action", "Unread");
+  addBookToLibrary("Who I Am", "Tony Rivers", "600", "Mystery", "Read");
+  addBookToLibrary("A Knight of the Seven Kingdoms", "Duncan Strong", "850", "Adventure", "Read");
+  displayBooks();
+  addFormData();
+}
 
-addBookToLibrary("Over the Horizon", "Larry Wells", "1205", "Action", "Unread");
-addBookToLibrary("Who I Am", "Tony Rivers", "600", "Mystery", "Read");
-addBookToLibrary("A Knight of the Seven Kingdoms", "Duncan Strong", "850", "Adventure", "Read");
-displayBooks();
-addFormData();
+initializeApp();
 
